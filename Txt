@@ -1,0 +1,6 @@
+Propuesta de corrección (aún no apliqué nada)
+
+Máscara más estricta: exigir azul saturado, con rojo menor a 80 y azul menos rojo mayor a 120. Probé esa condición: con la fila visible detecta solo la fila (987 × 29 px), y sin la fila no detecta nada. Así la búsqueda sigue esperando hasta que la fila aparezca.
+Filtro de forma: descartar candidatos de más de unos 60 px de alto o con proporción ancho/alto menor a 5. Es una segunda barrera por si algún otro elemento azul pasa el filtro de color.
+
+Se aplicaría en controlador.py, que usa _detectar_region_azul para la referencia, la comparación y la coordenada. En automatizador_expedientes.py, detectar_fila_azul tiene la misma máscara laxa y elige por mayor área. Ahí la fila gana al marco por solo 28 057 contra 26 960 px, un margen frágil, así que convendría aplicarle el mismo cambio.
